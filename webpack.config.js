@@ -15,12 +15,12 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new Dotenv(),
     new HtmlWebpackPlugin({
       title: 'tdd-template',
       template: './src/index.html',
       inject: 'body'
-    })
+    }),
+    new Dotenv()
   ],
   module: {
     rules: [
