@@ -1,6 +1,18 @@
 body {
-  margin-left: 20%;
-  margin-right: 20%;
   background-color: aquamarine;
   text-align: center;
+}
+
+img {
+  float: left;
+}
+
+#trendingSubmit {
+  float: right;
+  margin-right: 28%;
+}
+
+#randomSubmit {
+  float: left;
+  margin-left: 28%;
 }
