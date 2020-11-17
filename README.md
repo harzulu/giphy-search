@@ -2,7 +2,7 @@
 
 ## Seach Giphy for any gif you want, 11/16/2020
 
-### Ben McFarland, Eric Stratton
+### Ben McFarland, Eric Stratton, Diego Salazar
 
 Using the Giphy API, you can enter a keyword and get the search results from giphy for that word. You can also search the trending gifs on giphy and eventually upload your own gifs!
 
@@ -64,4 +64,4 @@ There are no known bugs or issues.
 
 This project is licensed under the GPL license.
 
-Copyright (c) 2020 Ben McFarland, Eric Stratton
+Copyright (c) 2020 Ben McFarland, Eric Stratton, Diego Salazar

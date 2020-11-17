@@ -2,78 +2,52 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
+import GiphyService  from './js/giphy-service.js';
 
 $(document).ready(function() {  // UI to print gifs based on keyword searches
   $('#submit').submit(function(event) {
     event.preventDefault();
     const newGif = $('#keyword').val(); // store user input in variable
     $('#keyword').val(""); // clear text field 
-  
-    let request = new XMLHttpRequest();
-    const url = `http://api.giphy.com/v1/gifs/search?q=${newGif}&api_key=${process.env.API_KEY}`; // Giphy search endpoint
-  
-    request.onreadystatechange = function() {
-      if (this.readyState === 4 && this.status === 200) { // if state is totally ready and status is "200"OK
-        const response = JSON.parse(this.responseText); // store server response in variable
-        getElements(response);
-      }
-    };
-
-    request.open("GET", url, true);
-    request.send();
-
-    function getElements(response) {
+    //clearFields();
+    let promise = GiphyService.searchGifs(newGif);
+    promise.then(function(response) {
+      const body = JSON.parse(response);
       for(let i = 0; i < 50; i++) {
-        $('.showResults').append(`<a href='${response.data[i].url}'><img src=${response.data[i].images.original.url} id='gif${response.data[i].title}'></a>`);
+        $('.showResults').append(`<a href='${body.data[i].url}'><img src=${body.data[i].images.original.url} id='gif${body.data[i].title}'></a>`);
       }
-    }
-
+    }, function(error) {
+      $('.showErrors').text(`There was an error processing your request: ${error}`);
+    });
   });
 
   $('#trending').submit(function(event) {  // UI to print trending photos from Giphy
     event.preventDefault();
-
-    let request = new XMLHttpRequest();
-    const url = `http://api.giphy.com/v1/gifs/trending?api_key=${process.env.API_KEY}`;
-
-    request.onreadystatechange = function() {
-      if (this.readyState === 4 && this.status === 200) { // if state is totally ready and status is "200"OK
-        const response = JSON.parse(this.responseText); // store server response in variable
-        getElements(response);
+    const newGif = $('#keyword').val(); // store user input in variable
+    $('#keyword').val(""); // clear text field 
+    //clearFields();
+    let promise = GiphyService.trendingGifs(newGif);
+    promise.then(function (response) {
+      const body = JSON.parse(response);
+      for(let i= 0; i < 50; i++) {
+        $('.showResults').append(`<a href='${body.data[i].url}'><img src=${body.data[i].images.original.url} id='gif${body.data[i].title}'></a>`);
       }
-    };
-
-    request.open("GET", url, true);
-    request.send();
-
-    function getElements(response) {
-      for(let i = 0; i < 50; i++) {
-        $('.showResults').append(`<a href='${response.data[i].url}'><img src=${response.data[i].images.original.url} id='gif${response.data[i].title}'></a>`);
-      }
-    }
-
+    }, function (error) {
+      $('.showErrors').text(`There was an error processing your request: ${error}`);
+    });
   });
 
   $('#random').submit(function(event) {  // UI to print a random photo from Giphy
     event.preventDefault();
-
-    let request = new XMLHttpRequest();
-    const url = `http://api.giphy.com/v1/gifs/random?api_key=${process.env.API_KEY}`;
-
-    request.onreadystatechange = function() {
-      if (this.readyState === 4 && this.status === 200) { // if state is totally ready and status is "200"OK
-        const response = JSON.parse(this.responseText); // store server response in variable
-        getElements(response);
-      }
-    };
-
-    request.open("GET", url, true);
-    request.send();
-
-    function getElements(response) {
-      $('.showResults').append(`<a href='${response.data.url}'><img src=${response.data.images.original.url} id='gif${response.data.title}'></a>`);
-    }
-
+    const newGif = $('#keyword').val(); // store user input in variable
+    $('#keyword').val(""); // clear text field 
+    //clearFields();
+    let promise = GiphyService.randomGif(newGif);
+    promise.then(function (response) {
+      const body = JSON.parse(response);
+      $('.showResults').append(`<a href='${body.data.url}'><img src=${body.data.images.original.url} id='gif${body.data.title}'></a>`);
+    }, function (error) {
+      $('.showErrors').text(`There was an error processing your request: ${error}`);
+    });
   });
-
 });
