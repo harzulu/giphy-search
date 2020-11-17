@@ -34,7 +34,7 @@ Using the Giphy API, you can enter a keyword and get the search results from gip
 
 #### To View Live Project Online:
 The live version is at this link:
-[URL Link]
+https://harzulu.github.io/giphy-search/dist/index.html
 
 ## Known Bugs/Issues
 
