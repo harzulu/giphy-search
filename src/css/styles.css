@@ -4,7 +4,27 @@ body {
 }
 
 img {
-  float: left;
+  float: center;
+  width: 400px;
+  height: auto;
+}
+
+.container {
+  float: center;
+  background-color: white;
+  height: 320px;
+  border: 5px solid black;
+  padding: 5%;
+  margin-top: 5%;
+}
+
+.showResults {
+  background-color: rgba(0, 68, 255, 0.288);
+  border: 5px solid black;
+  padding: 1%;
+  margin-top: 5%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 #trendingSubmit {
