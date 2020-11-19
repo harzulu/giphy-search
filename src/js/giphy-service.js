@@ -35,7 +35,7 @@ export default class GiphyService {
   static randomGif() {
     return new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
-      const url = `http://api.giphy.com/v1/gifs/random?api_key=${process.env.API_KEY}`;
+      const url = `http://api.giphy.com/v1/gifs/random?&api_key=${process.env.API_KEY}`;
       request.onload = function() {
         if (this.status === 200) {
           resolve(request.response);

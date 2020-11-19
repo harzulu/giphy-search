@@ -7,6 +7,7 @@ import GiphyService  from './js/giphy-service.js';
 $(document).ready(function() {  // UI to print gifs based on keyword searches
   $('#submit').submit(function(event) {
     event.preventDefault();
+    $('.showResults').html('');
     const newGif = $('#keyword').val(); // store user input in variable
     $('#keyword').val(""); // clear text field 
     //clearFields();
@@ -23,6 +24,7 @@ $(document).ready(function() {  // UI to print gifs based on keyword searches
 
   $('#trending').submit(function(event) {  // UI to print trending photos from Giphy
     event.preventDefault();
+    $('.showResults').html('');
     const newGif = $('#keyword').val(); // store user input in variable
     $('#keyword').val(""); // clear text field 
     //clearFields();
@@ -39,6 +41,7 @@ $(document).ready(function() {  // UI to print gifs based on keyword searches
 
   $('#random').submit(function(event) {  // UI to print a random photo from Giphy
     event.preventDefault();
+    $('.showResults').html('');
     const newGif = $('#keyword').val(); // store user input in variable
     $('#keyword').val(""); // clear text field 
     //clearFields();
